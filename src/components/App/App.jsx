@@ -12,12 +12,13 @@ import Loader from '../Loader/Loader';
 import Error from '../Error/Error';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
+import { selectLoading, selectError } from '../../redux/contactsSlice';
 import css from './App.module.css';
 
 export default function App() {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.contacts.loading);
-  const error = useSelector((state) => state.contacts.error);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());

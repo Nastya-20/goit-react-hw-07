@@ -1,7 +1,7 @@
 import React from 'react';
-import css from './Contact.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPhone } from '@fortawesome/free-solid-svg-icons';
+import css from './Contact.module.css';
 
 export default function Contact({ id, name, number, onDelete }) {
   return (

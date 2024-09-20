@@ -11,7 +11,7 @@ export default function ContactList() {
   const dispatch = useDispatch();
 
   const handleDelete = (contactId) => {
-    dispatch(deleteContact(contactId))
+     dispatch(deleteContact(contactId))
       .then(() => {
         toast.success('Contact deleted successfully!');
       })
@@ -22,11 +22,15 @@ export default function ContactList() {
 
   return (
     <ul className={css.list}>
-      {filteredContacts.map(({ id, name, number }) => (
-        <li key={id} className={css.item}>
-          <Contact id={id} name={name} number={number} onDelete={handleDelete} />
-        </li>
-      ))}
+      {filteredContacts.length === 0 ? (
+        <li className={css.textItem}>No contacts to display</li>
+      ) : (
+        filteredContacts.map(({ id, name, number }) => (
+          <li key={id} className={css.item}>
+            <Contact id={id} name={name} number={number} onDelete={handleDelete} />
+          </li>
+        ))
+      )}
     </ul>
   );
 }

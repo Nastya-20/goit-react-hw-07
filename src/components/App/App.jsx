@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 import { fetchContacts } from '../../redux/contactsOps';
-import { persistor } from '../../redux/store';
 import ContactForm from '../ContactForm/ContactForm';
 import SearchBox from '../SearchBox/SearchBox';
 import ContactList from '../ContactList/ContactList';
@@ -25,7 +23,7 @@ export default function App() {
   }, [dispatch]);
 
   return (
-    <PersistGate loading={<Loader />} persistor={persistor}>
+    <>
       <h1 className={css.title}>
         <FontAwesomeIcon icon={faBook} className={css.iconBook} />
         Phonebook
@@ -33,7 +31,7 @@ export default function App() {
       <div className={css.container}>
         <div className={css.wrapper}>
           {loading && <Loader></Loader>}
-          {error && <Error>Error loading contacts</Error>}
+          {error && <Error>{error}</Error>}
           <ContactForm />
           <SearchBox />
         </div>
@@ -44,11 +42,13 @@ export default function App() {
         autoClose={4000}
         hideProgressBar={false}
         newestOnTop={false}
-        closeOnClick rtl={false}
+        closeOnClick
+        rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover />
-    </PersistGate>
+        pauseOnHover
+      />
+    </>
   );
 }
 
